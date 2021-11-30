@@ -21,13 +21,13 @@ const AddTaskForm = ({ list, onAddTask }) => {
     };
     setIsLoading(true);
     axios
-      .post('http://localhost:3001/tasks', obj)
+      .post('http://localhost:3003/tasks', obj)
       .then(({ data }) => {
         console.log(data);
         onAddTask(list.id, data);
         toggleFormVisible();
       })
-      .catch(() => {
+      .catch((e) => {
         alert('Ошибка при добавлении задачи!');
       })
       .finally(() => {
