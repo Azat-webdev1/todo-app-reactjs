@@ -5,8 +5,9 @@ import { Route, useHistory } from 'react-router-dom';
 import './App.scss';
 import { List, AddList, Tasks } from './components';
 
+
 function App() {
-  const [lists, setLists] = useState(null);
+  const [lists, setLists] = useState([]);
   const [colors, setColors] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
   let history = useHistory();
@@ -39,11 +40,9 @@ function App() {
   
   const onEditTask = (listId, taskObj) => {
     const newTaskText = window.prompt('Текст задачи', taskObj.text);
-
     if (!newTaskText) {
       return;
     }
-
     const newList = lists.map(list => {
       if (list.id === listId) {
         list.tasks = list.tasks.map(task => {
