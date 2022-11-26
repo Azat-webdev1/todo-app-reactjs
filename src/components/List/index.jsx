@@ -19,7 +19,7 @@ const List = ({
 }) => {
   const removeList = item => {
     if (window.confirm('Вы действительно хотите удалить список?')) {
-      axios.delete('http://localhost:3003/lists/' + item.id).then(() => {
+      axios.delete(`${process.env.REACT_APP_BASE_URL}lists/` + item.id).then(() => {
         onRemove(item.id);
       });
     }

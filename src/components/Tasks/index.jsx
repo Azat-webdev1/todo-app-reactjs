@@ -22,7 +22,7 @@ const Tasks = ({
     const newTitle = window.prompt('Название списка', list.name);
     if (newTitle) {
       onEditTitle(list.id, newTitle);
-      axios.patch('http://localhost:3003/lists/' + list.id, {
+      axios.patch(`${process.env.REACT_APP_BASE_URL}lists/` + list.id, {
           name: newTitle
         })
         .catch(() => {

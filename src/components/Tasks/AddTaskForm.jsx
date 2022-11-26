@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import addSvg from '../../assets/img/add.svg';
 
+
 const AddTaskForm = ({ list, onAddTask }) => {
   const [visibleForm, setFormVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -21,7 +22,7 @@ const AddTaskForm = ({ list, onAddTask }) => {
     };
     setIsLoading(true);
     axios
-      .post('http://localhost:3003/tasks', obj)
+      .post(`${process.env.REACT_APP_BASE_URL}tasks`, obj)
       .then(({ data }) => {
         console.log(data);
         onAddTask(list.id, data);

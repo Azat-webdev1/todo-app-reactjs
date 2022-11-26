@@ -13,11 +13,11 @@ function App() {
   let history = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:3003/lists?_expand=color&_embed=tasks')
+    axios.get(`${process.env.REACT_APP_BASE_URL}lists?_expand=color&_embed=tasks`)
       .then(({ data }) => {
         setLists(data);
       });
-    axios.get('http://localhost:3003/colors')
+    axios.get(`${process.env.REACT_APP_BASE_URL}colors`)
       .then(({ data }) => {
         setColors(data);
       });
@@ -56,7 +56,7 @@ function App() {
     });
     setLists(newList);
     axios
-      .patch('http://localhost:3003/tasks/' + taskObj.id, {
+      .patch(`${process.env.REACT_APP_BASE_URL}tasks/` + taskObj.id, {
         text: newTaskText
       })
       .catch(() => {
@@ -73,7 +73,7 @@ function App() {
         return item;
       });
       setLists(newList);
-      axios.delete('http://localhost:3003/tasks/' + taskId).catch(() => {
+      axios.delete(`${process.env.REACT_APP_BASE_URL}tasks/` + taskId).catch(() => {
         alert('Не удалось удалить задачу');
       });
     }
@@ -93,7 +93,7 @@ function App() {
     });
     setLists(newList);
     axios
-      .patch('http://localhost:3003/tasks/' + taskId, {
+      .patch(`${process.env.REACT_APP_BASE_URL}tasks/` + taskId, {
         completed
       })
       .catch(() => {
